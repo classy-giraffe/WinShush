@@ -10,4 +10,4 @@ Get a clean environment on Windows 10.
 |          | Windows 10 Enterprise LTSC 2021 x64 | Windows 10 Enterprise LTSC 2021 x86 | Windows 10 IoT Enterprise LTSC 2021 x64 |
 |----------|-------------------------------------|-------------------------------------|-----------------------------------------|
 | filename |                                     |                                     |                                         |
-| SHA256   |    
+| SHA256   |                                     |                                     |                                         | 
