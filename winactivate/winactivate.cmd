@@ -6,21 +6,10 @@ set "force_kms38=0"
 set "headless=0"
 set "skip_admin_check=0"
 
-echo ================================================================
-echo winactivate - Easy-to-use Windows HWID/KMS38 Activation Script.
-echo https://github.com/luzeadev/winactivate
-echo ================================================================
+echo ======================================================================
+echo WinShush Activator (thanks to https://github.com/luzeadev/winactivate)
+echo ======================================================================
 echo.
-goto parse_arguments
-
-:parse_arguments
-if "%~1" neq "" (
-    if "%~1" equ "/forcekms38" set "force_kms38=1"
-    if "%~1" equ "/headless" set "headless=1"
-    if "%~1" equ "/skipadmincheck" set "skip_admin_check=1"
-    shift
-    goto parse_arguments
-)
 
 goto main
 
