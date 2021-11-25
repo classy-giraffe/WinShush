@@ -11,4 +11,5 @@ Get a clean environment on Windows 10.
 
 # How to activate Windows and setup GPOs
 
-Basically all you need to do after having installed Windows is running this command ```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/classy-giraffe/WinShush/main/init.ps1'))``` in an administrative shell.
+Basically all you need to do after having installed Windows is running this command in an administrative shell:
+```Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/classy-giraffe/WinShush/main/init.ps1'))``` 
