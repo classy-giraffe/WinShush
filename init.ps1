@@ -12,3 +12,4 @@ if (Test-Path -Path $folder) {
 }
 Expand-Archive -Path $output -DestinationPath $folder
 Invoke-Item "WinShush\WinShush-main\winactivate\winactivate.cmd"
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
