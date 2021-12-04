@@ -4,32 +4,14 @@ pushd "%working_directory%"
 
 set "force_kms38=0"
 set "headless=0"
-set "skip_admin_check=0"
 
 echo ======================================================================
 echo WinShush Activator (thanks to https://github.com/luzeadev/winactivate)
 echo ======================================================================
-echo.
 
 goto main
 
 :main
-if "%skip_admin_check%" equ "0" (
-    reg query "HKU\S-1-5-19" >nul 2>&1 || (
-        echo This script requires Administrator privileges to run.
-        echo Either run it from an administrator command prompt, or right-click the script and choose "Run as administrator".
-        echo.
-        goto exit
-    )
-)
-
-for /f "tokens=6 delims=[]. " %%a in ('ver') do (
-    if "%%a" lss "10240" (
-        echo This script requires build 10240 or above to run.
-        echo.
-        goto exit
-    )
-)
 
 echo Installing product key...
 set "product_key=XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"
@@ -252,13 +234,6 @@ for /f "skip=2 tokens=3 delims=." %%a in ('reg query HKLM\SYSTEM\CurrentControlS
     )
 )
 
-
-if "%product_key%" equ "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX" (
-    echo This edition or version of Windows is not supported by this script.
-    echo.
-    goto exit
-)
-
 cscript /nologo "%systemdrive%\Windows\System32\slmgr.vbs" /ipk "%product_key%"
 
 if "%errorlevel%" neq "0" (
@@ -269,37 +244,11 @@ if "%errorlevel%" neq "0" (
 
 if exist "%working_directory%GenuineTicket.xml" del /f "%working_directory%GenuineTicket.xml"
 
-if not exist "%working_directory%gatherosstate.exe" (
-    echo This script requires gatherosstate.exe to be in the same directory as this script.
-    echo Please re-download the script from https://github.com/luzeadev/winactivate/releases.
-    echo.
-    goto exit
-)
-
-if not exist "%working_directory%slc.dll" (
-    echo This script requires slc.dll to be in the same directory as this script.
-    echo Please re-download the script from https://github.com/luzeadev/winactivate/releases.
-    echo.
-    goto exit
-)
-
 echo Patching gatherosstate.exe...
 rundll32 "%working_directory%slc.dll",PatchGatherosstate
 
-if not exist "%working_directory%gatherosstatemodified.exe" (
-    echo An error occurred while patching gatherosstate.exe.
-    echo.
-    goto exit
-)
-
 echo Generating GenuineTicket.xml...
 "%working_directory%gatherosstatemodified.exe"
-
-if not exist "%working_directory%GenuineTicket.xml" (
-    echo GenuineTicket.xml generation failed. Please check your internet connection and try again.
-    echo.
-    goto exit
-)
 
 echo Applying GenuineTicket.xml...
 copy /y /b "%working_directory%GenuineTicket.xml" "%systemdrive%\ProgramData\Microsoft\Windows\ClipSVC\GenuineTicket"
@@ -325,13 +274,5 @@ for /f %%a in ('powershell -NoProfile -Command "(Get-CimInstance -Query 'SELECT 
     )
 )
 
-echo Activation complete.
-echo.
-goto exit
-
 :exit
-popd
-if "%headless%" equ "0" (
-    pause
-)
-goto :eof
+echo Activation complete.
