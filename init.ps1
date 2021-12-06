@@ -7,12 +7,12 @@ $activator = $winshush_repo + "\winactivate\winactivate.cmd"
 $lgpo_bin = $winshush_repo + "\LGPO.exe"
 $gpos_folder = $winshush_repo + "\GPOs"
 
-if (Test-Path -Path $output -PathType Leaf) {
+if (Test-Path -Path $winshush_zip -PathType Leaf) {
     Write-Host "Archive already existent, deleting it."
-    Remove-Item -Path $winshsuh_zip -Force
+    Remove-Item -Path $winshush_zip -Force
 }
 Invoke-WebRequest -Uri $url -OutFile $output
-if (Test-Path -Path $folder) {
+if (Test-Path -Path $winshush_folder) {
     Write-Host "Folder already existent, deleting it."
     Remove-Item -Path $winshush_folder -Force -Recurse
 }
