@@ -7,6 +7,16 @@ $activator = $winshush_repo + "\winactivate\winactivate.cmd"
 $lgpo_bin = $winshush_repo + "\LGPO.exe"
 $gpos_folder = $winshush_repo + "\GPOs"
 
+if (Test-Path -Path $output -PathType Leaf) {
+    Write-Host "Archive already existent, deleting it."
+    Remove-Item -Path $winshsuh_zip -Force
+}
+Invoke-WebRequest -Uri $url -OutFile $output
+if (Test-Path -Path $folder) {
+    Write-Host "Folder already existent, deleting it."
+    Remove-Item -Path $winshush_folder -Force -Recurse
+}
+
 Write-Host "Downloading WinShush archive."
 Invoke-WebRequest -Uri $url -OutFile $winshush_zip
 
@@ -17,12 +27,8 @@ Write-Host "Activating Windows."
 Invoke-Item $activator
 
 Write-Host "Applying GPOs."
-$lgpo_bin + "/g" + $gpos_folder
+$lgpo_bin + " /g " + $gpos_folder
 gpupdate.exe /force 
-
-Write-Host "Removing leftovers files."
-Remove-Item -Path $winshsuh_zip -Force
-Remove-Item -Path $winshush_folder -Force -Recurse
 
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 choco feature enable -n allowGlobalConfirmation
