@@ -4,8 +4,6 @@ $winshush_zip = $download_folder + "\WinShush.zip"
 $winshush_folder = $download_folder + "\WinShush"
 $winshush_repo = $download_folder + "\WinShush\WinShush-main"
 $activator = $winshush_repo + "\winactivate\winactivate.cmd"
-$lgpo_bin = $winshush_repo + "\LGPO.exe"
-$gpos_folder = $winshush_repo + "\GPOs"
 
 if (Test-Path -Path $winshush_zip -PathType Leaf) {
     Write-Host "Archive already existent, deleting it."
@@ -25,10 +23,3 @@ Expand-Archive -Path $winshush_zip -DestinationPath $winshush_folder
 
 Write-Host "Activating Windows."
 Invoke-Item $activator
-
-Write-Host "Applying GPOs."
-$lgpo_bin + " /g " + $gpos_folder
-gpupdate.exe /force 
-
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-choco feature enable -n allowGlobalConfirmation
