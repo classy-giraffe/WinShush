@@ -9,7 +9,7 @@ Get a clean environment on Windows 10.
 | SHA256       | c90a6df8997bf49e56b9673982f3e80745058723a707aef8f22998ae6479597d                                                                                                     | 3276d60fa27f513b411224cd474278a9abe406159ba47776747862c7080292bc                                                                                                     | a0334f31ea7a3e6932b9ad7206608248f0bd40698bfb8fc65f14fc5e4976c160                                                                                                        |
 | Description  | Standard LTSC version of Windows 10, 64-bit (recommended)                                                                                                            | Standard LTSC version of Windows 10, 32-bit (suggested for old 32-bit PCs)                                                                                           | IoT LTSC version of Windows 10, 64-bit (suggested for thin clients)                                                                                                     |
 
-# How to activate Windows and setup GPOs
+# How to activate Windows
 
 Basically all you need to do after having installed Windows is running this command in an administrative shell:
 ```powershell
